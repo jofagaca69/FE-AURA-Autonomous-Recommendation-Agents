@@ -1,5 +1,3 @@
-# See https://docs.github.com/get-started/getting-started-with-git/ignoring-files for more about ignoring files.
-
 # Compiled output
 /dist
 /tmp
@@ -10,6 +8,10 @@
 /node_modules
 npm-debug.log
 yarn-error.log
+pnpm-debug.log
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
 
 # IDEs and editors
 .idea/
@@ -28,7 +30,7 @@ yarn-error.log
 !.vscode/extensions.json
 .history/*
 
-# Miscellaneous
+# Angular cache and coverage
 /.angular/cache
 .sass-cache/
 /connect.lock
@@ -40,3 +42,32 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
+
+# ---------------------------
+# 🔐 Archivos sensibles
+# ---------------------------
+# Evita subir configuraciones con secretos
+/src/environments/*.ts
+
+# Variables de entorno (si usas dotenv)
+*.env
+*.env.*
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Llaves y certificados
+*.pem
+*.key
+*.crt
+*.cert
+*.p12
+*.pfx
+
+# Archivos de despliegue o credenciales
+firebase.json
+*.serviceAccount.json
+credentials.json
+gcloud-key.json
+aws-credentials
