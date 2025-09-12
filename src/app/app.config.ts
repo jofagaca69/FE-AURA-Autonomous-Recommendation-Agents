@@ -7,6 +7,10 @@ import {provideAnimationsAsync} from '@angular/platform-browser/animations/async
 import {providePrimeNG} from 'primeng/config';
 
 import Aura from '@primeuix/themes/aura';
+import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
+import {environment} from '@env/environment';
+import {AngularFireAuthModule} from '@angular/fire/compat/auth';
+import {getAuth, provideAuth} from '@angular/fire/auth';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -16,8 +20,14 @@ export const appConfig: ApplicationConfig = {
     provideAnimationsAsync(),
     providePrimeNG({
       theme: {
-        preset: Aura
+        preset: Aura,
+        options: {
+          darkModeSelector: false || 'none'
+        }
       }
-    })
+    }),
+    provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
+    provideAuth(() => getAuth()),
+    AngularFireAuthModule
   ]
 };
