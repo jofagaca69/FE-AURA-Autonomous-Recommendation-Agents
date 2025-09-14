@@ -11,6 +11,7 @@ import { PasswordModule } from 'primeng/password';
 import { MessageModule } from 'primeng/message';
 import { AuthService } from '@services/auth/auth.service';
 import { Router } from '@angular/router';
+import {Divider} from 'primeng/divider';
 
 enum tabOptionstype {
   signIn = 'signIn',
@@ -30,7 +31,8 @@ enum tabOptionstype {
     Button,
     PasswordModule,
     MessageModule,
-    CommonModule
+    CommonModule,
+    Divider
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'

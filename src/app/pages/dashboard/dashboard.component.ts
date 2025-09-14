@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../../services/auth/auth.service';
+import { AuthService } from '@services/auth/auth.service';
 import { CommonModule } from '@angular/common';
 import { Button } from 'primeng/button';
 import { CardModule } from 'primeng/card';
@@ -14,8 +14,14 @@ import { CardModule } from 'primeng/card';
 export class DashboardComponent implements OnInit {
   userEmail: string = '';
   userName: string = '';
+  sidebarVisible = true;
+  sidebarCollapsed = false;
+  isMobile = false;
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService) {
+    this.checkScreenSize();
+    window.addEventListener('resize', () => this.checkScreenSize());
+  }
 
   ngOnInit() {
     const currentUser = this.authService.getCurrentUser();
@@ -31,5 +37,22 @@ export class DashboardComponent implements OnInit {
     } catch (error) {
       console.error('Error al cerrar sesión:', error);
     }
+  }
+
+  checkScreenSize() {
+    this.isMobile = window.innerWidth < 768;
+    if (this.isMobile) {
+      this.sidebarVisible = false;
+    } else {
+      this.sidebarVisible = true;
+    }
+  }
+
+  toggleMobileSidebar() {
+    this.sidebarVisible = !this.sidebarVisible;
+  }
+
+  toggleDesktopSidebar() {
+    this.sidebarCollapsed = !this.sidebarCollapsed;
   }
 }

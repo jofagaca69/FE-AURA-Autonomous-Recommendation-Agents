@@ -9,8 +9,15 @@ export const routes: Routes = [
     canActivate: [loginGuard]
   },
   {
-    path: 'dashboard',
-    loadComponent: () => import('./pages/dashboard/dashboard.component').then(m => m.DashboardComponent),
-    canActivate: [authGuard]
-  },
+    path: '',
+    loadComponent: () => import('./components/layout/layout.component').then(m => m.LayoutComponent),
+    canActivate: [authGuard],
+    children: [
+      {
+        path: 'dashboard',
+        loadComponent: () => import('./pages/dashboard/dashboard.component').then(m => m.DashboardComponent),
+        canActivate: [authGuard]
+      },
+    ]
+  }
 ];
